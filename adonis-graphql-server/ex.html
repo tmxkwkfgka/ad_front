@@ -1,0 +1,54 @@
+<script src = "http://code.jquery.com/jquery.min.js"></script>
+<script>
+
+  var objdata = {query : `query mutation {
+    addPost(title: "Hello Adonis", content: "Adonis is awesome!") {
+        id
+        title
+        slug
+        content
+        user {
+            username
+            email
+        }
+    }
+}`}
+
+$( document ).ready(function() {
+  console.log("resdy");
+  $.ajax({
+      method:"POST",
+      url: "http://127.0.0.1:3333/graphql",
+      contentType: "application/json",
+      headers: {
+        Authorization: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTUyNjg3NzI5N30.WR2QOfSvjl0HTHF0zg1Kyu_ceXPlFPo6IiObislWluk"
+      },
+
+      data:JSON.stringify(objdata),
+      success : function(res){
+        console.log('ajax res = ', res);
+        $("exx").update(res.toString());
+      }
+    });
+});
+
+
+
+
+
+</script>
+
+
+<html>
+  <head>
+
+  </head>
+
+  <body>
+    <div id= "exx">
+
+    </div>
+
+  </body>
+
+</html>
