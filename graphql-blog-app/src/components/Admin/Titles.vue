@@ -6,7 +6,7 @@
           <Menu/>
         </div>
         <div class="column is-9">
-          <h2 class="title">Users</h2>
+          <h2 class="title">Titles</h2>
           <table class="table is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
               <tr>
@@ -16,10 +16,10 @@
               </tr>
               <tbody>
                 <tr
-                  v-for="user in allUsers"
-                  :key="user.username">
-                  <td>{{ user.username }}</td>
-                  <td>{{ user.email }}</td>
+                  v-for="title in allTitles"
+                  :key="title.title">
+                  <td>{{ title.title }}</td>
+                  <td>{{ title.link }}</td>
                   <td>
 
                   </td>
@@ -35,21 +35,21 @@
 
 <script>
 import Menu from '@/components/Admin/menu'
-import { ALL_USERS_QUERY } from '@/graphql'
+import { ALL_TITLES_QUERY } from '@/graphql'
 
 export default {
-  name: 'Users',
+  name: 'Titles',
   components: {
     Menu
   },
   data () {
     return {
-      allUsers: []
+      allTitles: []
     }
   },
   apollo: {
-    allUsers: {
-      query: ALL_USERS_QUERY
+    allTitles: {
+      query: ALL_TITLES_QUERY
     }
   }
 }

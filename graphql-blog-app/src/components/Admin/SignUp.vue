@@ -14,6 +14,13 @@
            </p>
          </div>
 
+           <div class="field">
+           <label>id</label>
+           <p class="control">
+             <input type="text" class="input" v-model="idd">
+           </p>
+         </div>
+
           <div class="field">
            <label>email</label>
            <p class="control">
@@ -46,17 +53,26 @@ export default {
   name: 'SignUp',
   data () {
     return {
+      idd: '',
       username: '',
       email: '',
       password: ''
     }
   },
+  /*
+  apollo: {
+    allUsers: {
+      query: ALL_USERS_QUERY
+    }
+  },
+  */
   methods: {
     signup () {
-      console.log('signup start', this.$apollo.provider)
+      console.log('signup start', this.$apollo.provider, this.idd)
       this.$apollo.provider.defaultClient.mutate({
         mutation: SIGNUP_MUTATION,
         variables: {
+          id: Number(this.idd),
           username: this.username,
           email: this.email,
           password: this.password

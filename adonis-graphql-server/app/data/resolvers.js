@@ -5,6 +5,7 @@
 const User = use('App/Models/User')
 const Post = use('App/Models/Post')
 const slugify = require('slugify')
+const Title = use('App/Models/Title')
 
 // Define resolvers
 const resolvers = {
@@ -28,7 +29,12 @@ const resolvers = {
     async fetchPost(_, { id }) {
       const post = await Post.find(id)
       return post.toJSON()
+    },
+    async fetchTitles() {
+      const tiltes = await Title.all()
+      return tiltes.toJSON()
     }
+
   },
   Mutation: {
     // Handles user login
@@ -38,9 +44,9 @@ const resolvers = {
     },
 
     // Create new user
-    async createUser(_, { username, email, password }) {
+    async createUser(_, {id, username, email, password }) {
       console.log("graphql server create user !!", username, email);
-      return await User.create({ username, email, password })
+      return await User.create({id, username, email, password })
     },
 
     // Add a new post

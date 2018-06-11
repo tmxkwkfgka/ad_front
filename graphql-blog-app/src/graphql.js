@@ -1,14 +1,15 @@
 import gql from 'graphql-tag'
 
 export const SIGNUP_MUTATION = gql`
-  mutation SignupMutation($username: String!, $email: String!, $password: String!){
+  mutation SignupMutation($id: Int!, $username: String!, $email: String!, $password: String!){
     createUser(
+      id: $id,
       username: $username,
       email: $email,
       password: $password
 
     ){
-
+      id
       username
       email
       password
@@ -45,6 +46,17 @@ export const USER_QUERY = gql`
       posts {
         id
       }
+    }
+  }
+`
+
+export const ALL_TITLES_QUERY = gql`
+  query allTitlesQuery {
+    fetchTitles {
+      title
+      stage
+      classify
+      link
     }
   }
 `

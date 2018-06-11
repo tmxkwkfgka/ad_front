@@ -21,16 +21,23 @@ const typeDefs = `
     content: String!
     user: User!
   }
+  type Title {
+    title: String
+    stage: String
+    classify: String
+    link: String
+  }
   type Query {
     allUsers: [User]
     fetchUser(id: Int!): User
     allPosts: [Post]
     fetchPost(id: Int!): Post
+    fetchTitles: Title
 
   }
   type Mutation {
     login (email: String!, password: String!): String
-    createUser (username: String!, email: String!, password: String!): User
+    createUser (id: Int!, username: String!, email: String!, password: String!): User
     addPost (title: String!, content: String!): Post
   }
 `
