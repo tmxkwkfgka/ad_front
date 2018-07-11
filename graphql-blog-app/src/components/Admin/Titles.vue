@@ -16,13 +16,11 @@
               </tr>
               <tbody>
                 <tr
-                  v-for="title in allTitles"
+                  v-for="title in fetchTitles"
                   :key="title.title">
                   <td>{{ title.title }}</td>
                   <td>{{ title.link }}</td>
-                  <td>
-
-                  </td>
+                  <td>{{ title.startDate}}</td>
                 </tr>
               </tbody>
             </thead>
@@ -44,11 +42,11 @@ export default {
   },
   data () {
     return {
-      allTitles: []
+      fetchTitles: []
     }
   },
   apollo: {
-    allTitles: {
+    fetchTitles: {
       query: ALL_TITLES_QUERY
     }
   }
