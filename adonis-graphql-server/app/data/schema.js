@@ -26,13 +26,16 @@ const typeDefs = `
     stage: String
     classify: String
     link: String
+    startDate: String
+    endDate: String
   }
   type Query {
     allUsers: [User]
     fetchUser(id: Int!): User
     allPosts: [Post]
     fetchPost(id: Int!): Post
-    fetchTitles: Title
+    fetchTitles: [Title]
+    fetchOneMonth: [Title]
 
   }
   type Mutation {

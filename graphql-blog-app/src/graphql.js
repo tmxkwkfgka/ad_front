@@ -60,3 +60,13 @@ export const ALL_TITLES_QUERY = gql`
     }
   }
 `
+export const ALL_TITLES_ONEMONTH_QUERY = gql`
+  query fetchOneMonth {
+    fetchOneMonth {
+      title
+      stage
+      classify
+      link
+    }
+  }
+`

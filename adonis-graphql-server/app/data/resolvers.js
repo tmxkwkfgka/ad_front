@@ -6,6 +6,8 @@ const User = use('App/Models/User')
 const Post = use('App/Models/Post')
 const slugify = require('slugify')
 const Title = use('App/Models/Title')
+let uuidv4 = require('uuid/v4');
+const Database = use('Database')
 
 // Define resolvers
 const resolvers = {
@@ -13,6 +15,7 @@ const resolvers = {
     // Fetch all users
     async allUsers() {
       const users = await User.all()
+      console.log(users.toJSON())
       return users.toJSON()
     },
     // Get a user by its ID
@@ -23,6 +26,7 @@ const resolvers = {
     // Fetch all posts
     async allPosts() {
       const posts = await Post.all()
+
       return posts.toJSON()
     },
     // Get a post by its ID
@@ -31,9 +35,24 @@ const resolvers = {
       return post.toJSON()
     },
     async fetchTitles() {
-      const tiltes = await Title.all()
-      return tiltes.toJSON()
+      console.log("async fetch titles");
+      const titles = await Title.all()
+      //for(var i=0; titles.length; i++){
+      //  titles.primaryKeyValue = uuidv4();
+      //}
+
+      console.log(titles.toJSON());
+      //return titles;
+      return titles.toJSON()
+    },
+
+    async fetchOneMonth(){
+      let onemonth= new Date('2018-07-01');
+      const titles = await Database.raw('select * from titles where startDate > ?', [onemonth] )
+      console.log(titles.toJSON());
+      return titles.toJSON()
     }
+
 
   },
   Mutation: {
